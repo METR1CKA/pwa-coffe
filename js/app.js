@@ -1,13 +1,3 @@
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader')
-    preloader.classList.add('hidden')
-    preloader.style.transition = 'opacity 0.5s ease'
-    preloader.style.opacity = '0'
-    setTimeout(() => {
-        preloader.style.display = 'none'
-    }, 750)
-})
-
 const container = document.querySelector('.container')
 const homeLink = document.getElementById('link-home')
 const coffeesLink = document.getElementById('link-coffees')
@@ -25,15 +15,17 @@ const coUees = [
     { name: 'Accusantium', image: 'images/coffe_9.jpg' },
 ]
 
-function showHome() {
-    container.innerHTML = `
-        <h2>Bienvenido a Dev'CoUee</h2>
-        <img src="images/coffe_10.png" alt="Café" style="width: 100%; max-width: 300px; border-radius: 10px;"/>
-        <p>Explora nuestros deliciosos cafés.</p>
-    `
-}
+const homeHTML = `
+    <h2>Bienvenido a Dev'CoUee</h2>
+    <img src="images/coffe_10.png" alt="Café" style="width: 100%; max-width: 300px; border-radius: 10px;"/>
+    <p>Explora nuestros deliciosos cafés.</p>
+`
 
-function showCoUees() {
+homeLink.addEventListener('click', function () {
+    container.innerHTML = homeHTML
+})
+
+coffeesLink.addEventListener('click', function () {
     let output = ''
 
     coUees.forEach(function ({ name, image }) {
@@ -47,9 +39,9 @@ function showCoUees() {
     })
 
     container.innerHTML = output
-}
+})
 
-function showAccount() {
+accountLink.addEventListener('click', function () {
     container.innerHTML = `
         <div class="account-section">
             <h2 class="account-title">Mi Cuenta</h2>
@@ -62,15 +54,21 @@ function showAccount() {
             </div>
         </div>
     `
-}
+})
 
-homeLink.addEventListener('click', showHome)
+document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('load', function () {
+        const preloader = document.getElementById('preloader')
+        preloader.classList.add('hidden')
+        preloader.style.transition = 'opacity 0.5s ease'
+        preloader.style.opacity = '0'
+        setTimeout(() => {
+            preloader.style.display = 'none'
+        }, 750)
+    })
 
-coffeesLink.addEventListener('click', showCoUees)
-
-accountLink.addEventListener('click', showAccount)
-
-document.addEventListener('DOMContentLoaded', showHome)
+    container.innerHTML = homeHTML
+})
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
