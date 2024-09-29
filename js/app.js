@@ -70,7 +70,6 @@ coffeesLink.addEventListener('click', showCoUees)
 
 accountLink.addEventListener('click', showAccount)
 
-// Muestra la pantalla de inicio de forma predeterminada
 document.addEventListener('DOMContentLoaded', showHome)
 
 if ('serviceWorker' in navigator) {
