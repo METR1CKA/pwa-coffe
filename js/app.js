@@ -65,16 +65,16 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(() => {
             preloader.style.display = 'none'
         }, 750)
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/serviceWorker.js')
+                .then((res) => console.log('service worker registered'))
+                .catch((err) =>
+                    console.log('service worker not registered', err),
+                )
+        }
     })
 
     container.innerHTML = homeHTML
 })
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker
-            .register('/serviceWorker.js')
-            .then((res) => console.log('service worker registered'))
-            .catch((err) => console.log('service worker not registered', err))
-    })
-}
